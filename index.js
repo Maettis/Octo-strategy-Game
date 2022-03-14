@@ -48,12 +48,53 @@ alphabet.forEach(l => {
 
 let bottom = document.getElementById('bottom')
 let app = document.getElementById('app')
-let cards = ['soldier', 'archer', 'trap', 'bomb', 'queen']
+let cards = [
+    {
+        name: "soldier",
+        costs: 5,
+        img: "",
+        movePattern: "",
+        lives: 3,
+        damage: [1]
+    },
+    {
+        name: "archer",
+        costs: 10,
+        img: "",
+        movePattern: "",
+        lives: 1,
+        damage: [1, 2]
+    },
+    {
+        name: "trap",
+        costs: 7,
+        img: "",
+        movePattern: null,
+        lives: 3,
+        damage: [2],
+    },
+    {
+        name: "bomb",
+        costs: 10,
+        img: "",
+        movePattern: null,
+        lives: 0,
+        damage: [3, 2, 1]
+    },
+    {
+        name: "queen",
+        costs: 30,
+        img: "",
+        movePattern: "",
+        lives: 4,
+        damage: [3, 2, 1]
+    }
+]
 
 cards.forEach(str => {
     let card = document.createElement('div')
     card.classList.add('card')
-    card.id = str
+    card.id = str.name
     bottom.appendChild(card)
 
     card.addEventListener('mousedown', (event) => {
