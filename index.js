@@ -1,11 +1,15 @@
 let mouseX, mouseY
 document.addEventListener('mousemove', (event) => { mouseX = event.pageX, mouseY = event.pageY })
 
+let money = 0
+let moneyCounter = document.getElementById('counter')
+function updateMoneyCounter() { moneyCounter.innerText = money }
+updateMoneyCounter()
+
 let grid = document.getElementById('grid')
 let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
 let cardInHand = null
 alphabet.reverse()
-
 
 alphabet.forEach(l => {
     for (let i = 1; i <= 8; i++) {

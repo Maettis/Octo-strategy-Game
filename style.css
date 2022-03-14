@@ -105,5 +105,5 @@ html {
 }
 .notperm .overlay {
     background-color: red !important;
-    opacity: 50%;
+    opacity: 50% !important;
 }
