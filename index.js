@@ -98,10 +98,10 @@ cards.forEach(str => {
     bottom.appendChild(card)
 
     card.addEventListener('mousedown', (event) => {
-        cardInHand = card
         card.remove()
         card.classList.add('moving')
         app.appendChild(card)
+        cardInHand = card
         bottom.classList.add('hide')
 
         myLoop()
@@ -116,13 +116,14 @@ cards.forEach(str => {
     })
 
     document.addEventListener('mouseup', (event) => {
-        cardInHand = null
-        card.remove()
-        card.classList.remove('moving')
+        if (cardInHand == null) return
+        cardInHand.classList.remove('moving')
         bottom.classList.remove('hide')
+        cardInHand.remove()
         let x = event.clientX, y = event.clientY
-        let field = document.elementFromPoint(x, y);
-        if (!field.classList.contains('cont'))
-            bottom.appendChild(card)
+        let field = document.elementFromPoint(x, y)
+        if (!(field.classList.contains('a')||field.classList.contains('b')))
+            bottom.appendChild(cardInHand)
+        cardInHand = null
     })
 })
