@@ -24,6 +24,8 @@ html {
     float: left;
     position: relative;
     z-index: 3;
+    display: grid;
+    place-items: center;
 }
 .overlay {
     position: absolute;
@@ -106,4 +108,12 @@ html {
 .notperm .overlay {
     background-color: red !important;
     opacity: 50% !important;
+}
+.pawn {
+    height: 70%;
+    border-radius: 20%;
+    aspect-ratio: 1/1;
+    background-color: white;
+    z-index: 2;
+    box-shadow: 0 0 10px 0 black;
 }

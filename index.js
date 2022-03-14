@@ -28,12 +28,12 @@ alphabet.forEach(l => {
             if (cardInHand == null) return
             let x = event.clientX, y = event.clientY
             let field = document.elementFromPoint(x, y);
-            if (!field.classList.contains('a')&&!field.classList.contains('b')) {
-                if (l == 'a' || l == 'b')
+            if (!field.classList.contains('a')&&!field.classList.contains('b')&&!field.classList.contains('c')) {
+                if (l == 'a' || l == 'b' || l == 'c')
                     cont.classList.add('perm')
                 else 
                     cont.classList.add('notperm')
-            } else if (field.classList.contains('a')||field.classList.contains('b')) {
+            } else {
                 cont.classList.remove('perm')
                 cont.classList.remove('notperm')
             }
@@ -97,33 +97,50 @@ cards.forEach(str => {
     card.id = str.name
     bottom.appendChild(card)
 
-    card.addEventListener('mousedown', (event) => {
-        card.remove()
-        card.classList.add('moving')
-        app.appendChild(card)
-        cardInHand = card
+    function pickUp(ucard) {
+        ucard.remove()
+        ucard.classList.add('moving')
+        app.appendChild(ucard)
+        cardInHand = ucard
         bottom.classList.add('hide')
 
         myLoop()
         function myLoop() {
             setTimeout(function() {
-                if (!card.classList.contains('moving')) return;
-                card.style.top = mouseY + 'px'
-                card.style.left = mouseX + 'px'
+                if (!ucard.classList.contains('moving')) return;
+                ucard.style.top = mouseY + 'px'
+                ucard.style.left = mouseX + 'px'
                 myLoop()
             }, 1)
         }
+    }
+
+    card.addEventListener('mousedown', (event) => {
+        pickUp(card)
     })
 
     document.addEventListener('mouseup', (event) => {
         if (cardInHand == null) return
+        let bcard = cardInHand
         cardInHand.classList.remove('moving')
         bottom.classList.remove('hide')
         cardInHand.remove()
         let x = event.clientX, y = event.clientY
         let field = document.elementFromPoint(x, y)
-        if (!(field.classList.contains('a')||field.classList.contains('b')))
+        if (!(field.classList.contains('a')||field.classList.contains('b')||field.classList.contains('c'))) {
             bottom.appendChild(cardInHand)
-        cardInHand = null
+            cardInHand = null
+        } else {
+            cardInHand = null
+            let pawn = document.createElement('div')
+            pawn.classList.add('pawn', str.name)
+            field.parentElement.appendChild(pawn)
+
+            pawn.addEventListener('mousedown', (event) => {
+                pawn.remove()
+                app.appendChild(bcard)
+                pickUp(bcard)
+            })
+        }
     })
 })
