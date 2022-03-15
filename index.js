@@ -144,3 +144,22 @@ cards.forEach(str => {
         }
     })
 })
+
+let ready = document.getElementById('ready')
+ready.addEventListener('click', (event) => {
+    ready.classList.toggle('ready')
+    if (ready.classList.contains('ready'))
+        ready.getElementsByTagName('a')[0].innerText = 'CANCEL'
+    else 
+        ready.getElementsByTagName('a')[0].innerText = 'READY'
+})
+ready.addEventListener('mouseleave', (event) => {
+    ready.getElementsByTagName('a')[0].innerText = 'READY'
+})
+ready.addEventListener('mouseenter', (event) => {
+    if (ready.classList.contains('ready'))
+        ready.getElementsByTagName('a')[0].innerText = 'CANCEL'
+    else 
+        ready.getElementsByTagName('a')[0].innerText = 'READY'
+
+})

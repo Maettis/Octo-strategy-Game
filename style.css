@@ -40,19 +40,52 @@ html {
 .cont:hover .overlay {
     opacity: 100%;
 }
-#coins {
+.container {
     position: absolute;
     top: 0;
     left: 0;
-    transform: translate(-100%, 0);
-    padding: 10px 20px;
+    transform: translate(calc(-100% - 20px), 0);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.coins {
     border-radius: 20px;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
     font-size: 30px;
     display: inline-flex;
     background-color: rgba(0, 0, 0, 0.473);
-    margin: 0 -20px;
     color: white;
+    margin-bottom: 10px;
     /* box-shadow: 0 5px 0 3px rgb(52, 45, 87); */
+}
+.time {
+    border-radius: 20px;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 30px;
+    display: inline-flex;
+    background-color: rgba(0, 0, 0, 0.473);
+    color: white;
+    height: 60px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+.btn {
+    border-radius: 20px;
+    align-items: center;
+    font-size: 30px;
+    display: inline-flex;
+    background-color: rgba(0, 0, 0, 0.473);
+    color: white;
+    height: 60px;
+    transition: all 200ms;
+    cursor: pointer;
+    width: 172px;
+    justify-content: center;
 }
 .coin {
     background-image: url(https://www.iconpacks.net/icons/1/free-coin-icon-794-thumb.png);
@@ -116,4 +149,21 @@ html {
     background-color: white;
     z-index: 2;
     box-shadow: 0 0 10px 0 black;
+}
+.rigth {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(100%, 0);
+    padding: 10px 20px;
+    margin: 0 -20px;
+}
+.btn:hover {
+    scale: 1.1;
+}
+.ready {
+    background-color: rgb(109, 172, 16);
+}
+.ready:hover {
+    background-color: red;
 }
