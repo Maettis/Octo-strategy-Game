@@ -6,6 +6,11 @@ let moneyCounter = document.getElementById('counter')
 function updateMoneyCounter() { moneyCounter.innerText = money }
 updateMoneyCounter()
 
+let wave = 1
+let waveCounter = document.getElementById('wave')
+function updateWaveCounter() { waveCounter.innerText = "ROUND: " + wave }
+updateWaveCounter()
+
 let grid = document.getElementById('grid')
 let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
 let cardInHand = null
@@ -51,27 +56,27 @@ let app = document.getElementById('app')
 let cards = [
     {
         name: "soldier",
-        costs: 5,
+        costs: 6,
         img: "",
-        movePattern: "",
+        movePattern: [1],
         lives: 3,
         damage: [1]
+    },
+    {
+        name: "trap",
+        costs: 8,
+        img: "",
+        movePattern: null,
+        lives: 3,
+        damage: [2],
     },
     {
         name: "archer",
         costs: 10,
         img: "",
-        movePattern: "",
+        movePattern: [1],
         lives: 1,
         damage: [1, 2]
-    },
-    {
-        name: "trap",
-        costs: 7,
-        img: "",
-        movePattern: null,
-        lives: 3,
-        damage: [2],
     },
     {
         name: "bomb",
@@ -85,7 +90,7 @@ let cards = [
         name: "queen",
         costs: 30,
         img: "",
-        movePattern: "",
+        movePattern: [1],
         lives: 4,
         damage: [3, 2, 1]
     }
@@ -162,4 +167,24 @@ ready.addEventListener('mouseenter', (event) => {
     else 
         ready.getElementsByTagName('a')[0].innerText = 'READY'
 
+})
+
+let troups = document.getElementById('troups')
+cards.forEach(one => {
+    let card = document.createElement('div')
+    card.classList.add('troup')
+    let anchor = document.createElement('a')
+    anchor.innerText = one.name.toUpperCase()
+    let price = document.createElement('a')
+    price.innerText = one.costs
+    let container = document.createElement('div')
+    container.classList.add('ccon')
+    let coin = document.createElement('div')
+    coin.classList.add('coin')
+
+    container.appendChild(price)
+    container.appendChild(coin)
+    card.appendChild(anchor)
+    card.appendChild(container)
+    troups.appendChild(card)
 })

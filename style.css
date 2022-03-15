@@ -62,6 +62,18 @@ html {
     margin-bottom: 10px;
     /* box-shadow: 0 5px 0 3px rgb(52, 45, 87); */
 }
+.wave {
+    border-radius: 20px;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 30px;
+    display: inline-flex;
+    background-color: rgba(0, 0, 0, 0.473);
+    color: white;
+    height: 60px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
 .time {
     border-radius: 20px;
     align-items: center;
@@ -84,12 +96,11 @@ html {
     height: 60px;
     transition: all 200ms;
     cursor: pointer;
-    width: 172px;
     justify-content: center;
 }
 .coin {
     background-image: url(https://www.iconpacks.net/icons/1/free-coin-icon-794-thumb.png);
-    width: 40px;
+    width: 30px;
     aspect-ratio: 1/1;
     background-size: cover;
     background-position: center;
@@ -166,4 +177,43 @@ html {
 }
 .ready:hover {
     background-color: red;
+}
+.game {
+    /* display: none; */
+}
+.shop {
+    margin: 10px 5px;
+    align-self: flex-end;
+}
+.troup {
+    border-radius: 20px;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 20px;
+    display: inline-flex;
+    background-color: rgba(0, 0, 0, 0.473);
+    color: white;
+    height: 60px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    transition: all 200ms;
+    cursor: pointer;
+    width: 160px;
+}
+.troup:hover {
+    scale: 1.1;
+}
+#troups {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.ccon {
+    display: inline-flex;
+    align-items: center;
+}
+.ccon a {
+    margin-right: -5px;
+    font-size: 22px;
+    color: rgb(247, 207, 97);
 }
