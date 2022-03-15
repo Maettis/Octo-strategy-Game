@@ -1,5 +1,20 @@
+let cardsInHand = 0
+let maxCardsInHand = 6
 let mouseX, mouseY
-document.addEventListener('mousemove', (event) => { mouseX = event.pageX, mouseY = event.pageY })
+let showOverlay = false
+let toMuchInHand = document.getElementById('toMuchInHand')
+document.addEventListener('mousemove', (event) => { 
+    mouseX = event.pageX, mouseY = event.pageY 
+    if (showOverlay) {
+        if (cardsInHand >= maxCardsInHand) {
+            toMuchInHand.classList.remove('dn')
+            toMuchInHand.style.top = mouseY + 'px'
+            toMuchInHand.style.left = mouseX + 'px'
+        }
+    } else {
+        toMuchInHand.classList.add('dn')
+    }
+})
 
 let money = 200
 let moneyCounter = document.getElementById('counter')
@@ -96,13 +111,26 @@ let cards = [
     }
 ]
 
-let cardsInHand = 0
-let maxCardsInHand = 5
+function updateTroupUI() {
+    let troups = document.getElementsByClassName('troup')
+    console.log(cardsInHand)
+    if (cardsInHand >= maxCardsInHand) {
+        for (let i = 0; i < troups.length; i++) {
+            troups[i].classList.add('locked')
+        }
+    } else {
+        for (let i = 0; i < troups.length; i++) {
+            troups[i].classList.remove('locked')
+        }
+    }
+}
+
 function createCard(str) {
     let card = document.createElement('div')
     card.classList.add('card')
     card.id = str.name
     cardsInHand++
+    updateTroupUI()
     bottom.appendChild(card)
 
     function pickUp(ucard) {
@@ -111,6 +139,8 @@ function createCard(str) {
         app.appendChild(ucard)
         cardInHand = ucard
         bottom.classList.add('hide')
+        cardsInHand--
+        updateTroupUI()
 
         myLoop()
         function myLoop() {
@@ -136,12 +166,12 @@ function createCard(str) {
         let x = event.clientX, y = event.clientY
         let field = document.elementFromPoint(x, y)
         if (!(field.classList.contains('a')||field.classList.contains('b')||field.classList.contains('c'))) {
-            cardInHand++
+            cardsInHand++
+            updateTroupUI()
             bottom.appendChild(cardInHand)
             cardInHand = null
         } else {
             cardInHand = null
-            cardInHand--
             let pawn = document.createElement('div')
             pawn.classList.add('pawn', str.name)
             field.parentElement.appendChild(pawn)
@@ -198,17 +228,18 @@ cards.forEach(one => {
     troups.appendChild(card)
 
     card.addEventListener('mouseover', (event) => {
-
+        showOverlay = true
     })
     card.addEventListener('mouseleave', (event) => {
-        
+        showOverlay = false
     })
 
     card.addEventListener('click', (event) => {
-        if (cardInHand >= maxCardsInHand) return
+        if (cardsInHand >= maxCardsInHand) return
+        console.log(cardsInHand)
         if (money >= one.costs) {
             money = money - one.costs
-            updateMoneyCounter()
+            updateTroupUI()
             createCard(one)
         }
     })

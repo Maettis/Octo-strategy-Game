@@ -220,4 +220,16 @@ html {
 .locked {
     cursor: not-allowed;
     scale: 1 !important;
+    opacity: 50%;
+}
+.dn {
+    display: none;
+}
+#toMuchInHand {
+    position: absolute;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.582);
+    color: aliceblue;
+    border-radius: 10px;
+    transform: translate(-50%, -200%);
 }
