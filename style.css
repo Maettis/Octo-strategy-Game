@@ -217,3 +217,7 @@ html {
     font-size: 22px;
     color: rgb(247, 207, 97);
 }
+.locked {
+    cursor: not-allowed;
+    scale: 1 !important;
+}

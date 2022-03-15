@@ -1,7 +1,7 @@
 let mouseX, mouseY
 document.addEventListener('mousemove', (event) => { mouseX = event.pageX, mouseY = event.pageY })
 
-let money = 0
+let money = 200
 let moneyCounter = document.getElementById('counter')
 function updateMoneyCounter() { moneyCounter.innerText = money }
 updateMoneyCounter()
@@ -96,10 +96,13 @@ let cards = [
     }
 ]
 
-cards.forEach(str => {
+let cardsInHand = 0
+let maxCardsInHand = 5
+function createCard(str) {
     let card = document.createElement('div')
     card.classList.add('card')
     card.id = str.name
+    cardsInHand++
     bottom.appendChild(card)
 
     function pickUp(ucard) {
@@ -133,10 +136,12 @@ cards.forEach(str => {
         let x = event.clientX, y = event.clientY
         let field = document.elementFromPoint(x, y)
         if (!(field.classList.contains('a')||field.classList.contains('b')||field.classList.contains('c'))) {
+            cardInHand++
             bottom.appendChild(cardInHand)
             cardInHand = null
         } else {
             cardInHand = null
+            cardInHand--
             let pawn = document.createElement('div')
             pawn.classList.add('pawn', str.name)
             field.parentElement.appendChild(pawn)
@@ -148,6 +153,10 @@ cards.forEach(str => {
             })
         }
     })
+}
+
+cards.forEach(str => {
+    createCard(str)
 })
 
 let ready = document.getElementById('ready')
@@ -187,4 +196,20 @@ cards.forEach(one => {
     card.appendChild(anchor)
     card.appendChild(container)
     troups.appendChild(card)
+
+    card.addEventListener('mouseover', (event) => {
+
+    })
+    card.addEventListener('mouseleave', (event) => {
+        
+    })
+
+    card.addEventListener('click', (event) => {
+        if (cardInHand >= maxCardsInHand) return
+        if (money >= one.costs) {
+            money = money - one.costs
+            updateMoneyCounter()
+            createCard(one)
+        }
+    })
 })
