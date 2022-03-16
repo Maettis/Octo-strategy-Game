@@ -247,6 +247,7 @@ cards.forEach(one => {
         if (money >= one.costs) {
             money = money - one.costs
             updateTroupUI()
+            updateMoneyCounter()
             createCard(one)
         }
     })
